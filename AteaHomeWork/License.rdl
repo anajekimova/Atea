@@ -48,22 +48,33 @@ Order by Totat_Licenses DESC</CommandText>
     <DataSet Name="UsedSoftware">
       <Query>
         <DataSourceName>LicenseDataBase</DataSourceName>
-        <CommandText>SELECT DISTINCT LicenseComplianceReport.PoolID , Computers.ResourceID, LicenseComplianceReport.Name, LicenseComplianceReport.Installed,
-LicenseComplianceReport.Licenses, LicenseComplianceReport.Used_3_months, LicenseComplianceReport.Used_6_months, LicenseComplianceReport.Used_12_months,  InstalledAndUsedSoftware.Used90, InstalledAndUsedSoftware.Used180, InstalledAndUsedSoftware.Used365 
-From LicenseComplianceReport
-Inner Join InstalledAndUsedSoftware On LicenseComplianceReport.PoolID = InstalledAndUsedSoftware.PoolID
-Inner Join Computers on InstalledAndUsedSoftware.ResourceID = Computers.ResourceID
-Order by LicenseComplianceReport.PoolID</CommandText>
+        <CommandText>SELECT 
+	DISTINCT --LicenseComplianceReport.PoolID, 
+	--ias.ResourceID,
+	--Computers.ResourceID, 
+	LicenseComplianceReport.Name, 
+	LicenseComplianceReport.Installed,
+	LicenseComplianceReport.Licenses, 
+	LicenseComplianceReport.Used_3_months, 
+	LicenseComplianceReport.Used_6_months, 
+	LicenseComplianceReport.Used_12_months
+	--ias.Used90, 
+	--ias.Used180, 
+	--ias.Used365
+From 
+	LicenseComplianceReport
+	Join InstalledAndUsedSoftware ias On LicenseComplianceReport.PoolID = ias.PoolID
+	--Join Computers on ias.ResourceID = Computers.ResourceID
+Group by LicenseComplianceReport.Name, LicenseComplianceReport.Installed,LicenseComplianceReport.Licenses, 
+	LicenseComplianceReport.Used_3_months, 
+	LicenseComplianceReport.Used_6_months, 
+	LicenseComplianceReport.Used_12_months  
+	--ias.Used90, 
+	--ias.Used180, 
+	--ias.Used365
+Order by LicenseComplianceReport.Name</CommandText>
       </Query>
       <Fields>
-        <Field Name="PoolID">
-          <DataField>PoolID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="ResourceID">
-          <DataField>ResourceID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
         <Field Name="Name">
           <DataField>Name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -87,18 +98,6 @@ Order by LicenseComplianceReport.PoolID</CommandText>
         <Field Name="Used_12_months">
           <DataField>Used_12_months</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Used90">
-          <DataField>Used90</DataField>
-          <rd:TypeName>System.Int16</rd:TypeName>
-        </Field>
-        <Field Name="Used180">
-          <DataField>Used180</DataField>
-          <rd:TypeName>System.Int16</rd:TypeName>
-        </Field>
-        <Field Name="Used365">
-          <DataField>Used365</DataField>
-          <rd:TypeName>System.Int16</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -125,7 +124,7 @@ Order by LicenseComplianceReport.PoolID</CommandText>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.47801in</Height>
+                  <Height>0.52662in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -269,7 +268,7 @@ Order by LicenseComplianceReport.PoolID</CommandText>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.47801in</Height>
+                  <Height>0.52662in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -401,7 +400,7 @@ Order by LicenseComplianceReport.PoolID</CommandText>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.32176in</Height>
+                  <Height>0.37037in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -573,9 +572,9 @@ Order by LicenseComplianceReport.PoolID</CommandText>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Licenses</DataSetName>
-            <Top>1.625in</Top>
-            <Left>1.31944in</Left>
-            <Height>1.27778in</Height>
+            <Top>1.66667in</Top>
+            <Left>1.54861in</Left>
+            <Height>1.42361in</Height>
             <Width>4.61111in</Width>
             <Style>
               <Border>
@@ -598,7 +597,9 @@ Order by LicenseComplianceReport.PoolID</CommandText>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -606,19 +607,21 @@ Order by LicenseComplianceReport.PoolID</CommandText>
                     <Value />
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>16pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>In this report we can name of promagram and wich program has licenses int doesn't. The same in report has depiceted how many license need to buy and some programme linceses use less then another. </Value>
+                    <Value>Every company use software for computer and every software need to be licensed. In this report is displayed which software has licenses and how many many times this software was installed. </Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -626,9 +629,9 @@ Order by LicenseComplianceReport.PoolID</CommandText>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox124</rd:DefaultName>
-            <Top>0.15972in</Top>
-            <Left>1.31944in</Left>
-            <Height>1.27778in</Height>
+            <Top>0.25694in</Top>
+            <Left>1.54861in</Left>
+            <Height>1.25695in</Height>
             <Width>4.61111in</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -648,19 +651,43 @@ Order by LicenseComplianceReport.PoolID</CommandText>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value xml:space="preserve">
-</Value>
-                    <Style />
+                    <Value>
+1. According to this report, we can say that company has some software that does not have a license. </Value>
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>2. In some installed programs, not enough licenses, and some programs have more licenses when they use. </Value>
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>3. If we look at total licenses and total installed, we can see what installed program is more than licenses. In better situation need to be what total installed program is the same quantity how licenses. </Value>
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>3.19667in</Top>
-            <Left>1.31944in</Left>
-            <Height>2.40278in</Height>
-            <Width>4.5in</Width>
+            <Top>3.22917in</Top>
+            <Left>1.54861in</Left>
+            <Height>2.38889in</Height>
+            <Width>4.61111in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -678,10 +705,10 @@ Order by LicenseComplianceReport.PoolID</CommandText>
       </Body>
       <Width>10.15972in</Width>
       <Page>
-        <LeftMargin>1in</LeftMargin>
-        <RightMargin>1in</RightMargin>
-        <TopMargin>1in</TopMargin>
-        <BottomMargin>1in</BottomMargin>
+        <PageHeight>8.27in</PageHeight>
+        <PageWidth>11.69in</PageWidth>
+        <TopMargin>0.25in</TopMargin>
+        <BottomMargin>0.25in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>
