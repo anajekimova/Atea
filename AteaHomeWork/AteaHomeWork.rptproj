@@ -50,7 +50,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Report Include="License.rdl" />
-    <Report Include="UsedLicenses.rdl" />
+    <Report Include="Software.rdl" />
+    <Report Include="Software_.rdl" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Reporting Services\Microsoft.ReportingServices.MSBuilder.targets" />
 </Project>
